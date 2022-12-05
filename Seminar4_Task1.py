@@ -2,24 +2,15 @@
 # N = 20 -> [2,5]
 # N = 30 -> [2, 3, 5]
 
+# Функция определения простых множителей заданного числа
+def get_prime_factors(user_number):
+    prime_factors_list = []
+    for i in range(2, user_number):
+        while user_number % i == 0:
+            user_number /= i
+            prime_factors_list.append(i)
+    return prime_factors_list
 
-import math 
-# Функция вывода всех простых множителей заданного числа 
-def prime_factors(num): 
-    # Используем цикл для вывода четных множителей 
-    while num % 2 == 0: 
-        num = num / 2  
-        print(2,)
- 
-    for i in range(3, int(math.sqrt(num)) + 1, 2): 
- 
-        # Используем цикл для вывода нечетных множителей  
-        while num % i == 0: 
-            num = num / i 
-            print(i) 
-    if num > 2: 
-        print(num) 
-
- 
-num = 20
-prime_factors(num) 
+given_number = int(input("Введите натуральное число: "))
+prime_factors_list = get_prime_factors(given_number)
+print(f'Список простых множителей числа {given_number} :{prime_factors_list}')
