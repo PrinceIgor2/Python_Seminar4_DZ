@@ -11,43 +11,31 @@
 # Программа выдаст:
 # АНГЕЛА МЕРКЕЛЬ 5
 # ЭНАКИН СКАЙУОКЕР 5
-# Фредди Меркури 3
+# Фредди Меркьюри 3
 # Александр Пушкин 4
 
 
-# with open('file.txt', 'a', encoding='utf-8') as data:
-#     data.write('Ангела Меркель 5\n')
-#     data.write('Энакин Скайуокер 5\n')
-#     data.write('Фредди Меркури 3\n')
-#     data.write('Александр Пушкин 4\n')
+from typing import List
 
-#     # for i in data:
-#     #     last_name, first_name, points = i.split()
-#     # if int(points) > 4:
-#     #     print(f'{last_name.upper()} {first_name.upper()}')
-
-# data.close()
+def list_changed(spisok: List[str], accept: str) -> str:
+    list_file = ' '
+    for student in spisok:
+        if student.count(accept):
+            student = student.upper()
+        string = student + "\n"
+        list_file += string
+    return list_file
 
 
 
-# path = 'file.txt'
 
-# with open(path, 'w', encoding='utf-8') as file:
-#     pupils = path.write().split()
-# for pupil in pupils:
-#     last_name, first_name, points = pupil.split()
-# if int(points) > 4:
-#     print(f'{last_name} {first_name}')
-   
-# path.close()
+students_list = open('file.txt', 'r', encoding='utf-8')
+new_list = students_list.read().split('\n')
+students_list.close()
+
+rewriten_list = list_changed(new_list, accept = '5')
 
 
-n = int(input("Введите через пробел: "))
-nameList = []
-for i in range(n):
-    line1 = list(input().split())
-    nameList.append((line1[1], line1[0]))
-    nameList.sort(key=lambda x: -int(x[0]))
-for i in nameList:
-    print(i[1])
- 
+students_list = open('file.txt', 'w', encoding='utf-8')
+students_list.write(rewriten_list)
+students_list.close()
